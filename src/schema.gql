@@ -1,0 +1,27 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateUserInput {
+  age: Int!
+  gender: Gender!
+}
+
+enum Gender {
+  MAN
+  WOMAN
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User!
+}
+
+type Query {
+  getUser: [User!]!
+}
+
+type User {
+  age: Int!
+  gender: Gender!
+  id: Int!
+}
