@@ -14,6 +14,7 @@ export const typeOrmConfig: TypeOrmModuleAsyncOptions = {
       database: configService.get('DB_DATABASE'),
       entities: [__dirname + '../**/*.entity.{js,ts}'],
       synchronize: true,
+      logging: true,
     };
   },
 };
