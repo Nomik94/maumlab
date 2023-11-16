@@ -2,10 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateServeyInput {
+  name: String!
+}
+
 input CreateUserInput {
   age: Int!
   gender: Gender!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 enum Gender {
   MAN
@@ -13,11 +22,28 @@ enum Gender {
 }
 
 type Mutation {
+  createServey(input: CreateServeyInput!): Servey!
   createUser(input: CreateUserInput!): User!
+  deleteServey(id: Float!): String!
+  updateServey(id: Float!, input: UpdateServeyInput!): String!
 }
 
 type Query {
+  getAllServey: [Servey!]!
+  getByIdServey(id: Float!): Servey!
   getUser: [User!]!
+}
+
+type Servey {
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  id: Int!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input UpdateServeyInput {
+  name: String
 }
 
 type User {

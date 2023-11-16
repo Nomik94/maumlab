@@ -5,7 +5,9 @@ import {
   FindOneOptions,
   FindOptionsWhere,
   Repository,
+  UpdateResult,
 } from 'typeorm';
+import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
 interface HasId {
   id: number;
@@ -30,21 +32,24 @@ export abstract class BaseAbstractRepository<T extends HasId>
     return await this.entity.find(options);
   }
 
-  public async findByCondition(
+  public async findOneByCondition(
     condition: FindOneOptions<T>,
-  ): Promise<T> | undefined {
+  ): Promise<T> | null {
     return await this.entity.findOne(condition);
   }
 
-  public async findOneById(id: any): Promise<T> | undefined {
+  public async findOneById(id: number): Promise<T> | null {
     const option: FindOptionsWhere<T> = {
       id,
-    };
+    } as FindOptionsWhere<T>;
 
     return await this.entity.findOneBy(option);
   }
 
-  public async remove(data: T): Promise<T> {
-    return await this.entity.remove(data);
+  public async update(
+    id: number,
+    data: QueryDeepPartialEntity<T>,
+  ): Promise<UpdateResult> {
+    return await this.entity.update(id, data);
   }
 }

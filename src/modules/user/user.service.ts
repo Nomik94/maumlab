@@ -1,4 +1,8 @@
-import { Inject, Injectable } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { User } from '@/modules/user/entity/user.entity';
 import { UserRepositoryInterface } from '@/modules/user/interface/user.repository.interface';
 import { CreateUserInput } from '@/modules/user/dto/create-user.input.dto';
@@ -11,16 +15,15 @@ export class UserService {
   ) {}
 
   async createUser(input: CreateUserInput): Promise<User> {
-    const userEntity = this.userRepository.create(input);
-    const createdUser = await this.userRepository.save(userEntity);
-    return this.mapEntityToModel(createdUser);
+    try {
+      const userEntity: User = this.userRepository.create(input);
+      return await this.userRepository.save(userEntity);
+    } catch (e) {
+      throw new InternalServerErrorException(e.message);
+    }
   }
 
   async findAll(): Promise<User[]> {
     return this.userRepository.findAll();
-  }
-
-  private mapEntityToModel(entity: User): User {
-    return { id: entity.id, age: entity.age, gender: entity.gender };
   }
 }

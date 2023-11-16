@@ -6,6 +6,9 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { typeOrmConfig } from '@/config/typeorm.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ServeyModule } from '@/modules/servey/servey.module';
+import { QuestionModule } from '@/modules/question/question.module';
+import { ChoiceModule } from '@/modules/choice/choice.module';
 
 @Module({
   imports: [
@@ -17,6 +20,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       sortSchema: true,
     }),
     UserModule,
+    ServeyModule,
+    QuestionModule,
+    ChoiceModule,
   ],
   controllers: [],
   providers: [],
