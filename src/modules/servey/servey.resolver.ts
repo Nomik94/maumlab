@@ -3,7 +3,6 @@ import { ServeyService } from '@/modules/servey/servey.service';
 import { Servey } from '@/modules/servey/entity/servey.entity';
 import { CreateServeyInput } from '@/modules/servey/dto/create-servey.input.dto';
 import { UpdateServeyInput } from '@/modules/servey/dto/update-servey.input.dto';
-import { UpdateResult } from 'typeorm';
 
 @Resolver()
 export class ServeyResolver {
