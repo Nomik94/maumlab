@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ServeyService } from '@/modules/servey/servey.service';
 import { Servey } from '@/modules/servey/entity/servey.entity';
 import { CreateServeyInput } from '@/modules/servey/dto/create-servey.input.dto';
@@ -14,7 +14,9 @@ export class ServeyResolver {
   }
 
   @Query(() => Servey)
-  async getByIdServey(@Args('id') id: number): Promise<Servey> {
+  async getByIdServey(
+    @Args({ name: 'id', type: () => Int }) id: number,
+  ): Promise<Servey> {
     return this.serveyService.findOneByIdServey(id);
   }
 
@@ -25,7 +27,7 @@ export class ServeyResolver {
 
   @Mutation(() => String)
   async updateServey(
-    @Args('id') id: number,
+    @Args({ name: 'id', type: () => Int }) id: number,
     @Args('input') input: UpdateServeyInput,
   ): Promise<string> {
     await this.serveyService.updateServey(id, input);
@@ -34,7 +36,9 @@ export class ServeyResolver {
   }
 
   @Mutation(() => String)
-  async deleteServey(@Args('id') id: number): Promise<string> {
+  async deleteServey(
+    @Args({ name: 'id', type: () => Int }) id: number,
+  ): Promise<string> {
     await this.serveyService.removeServey(id);
 
     return `success Delete id:${id}`;

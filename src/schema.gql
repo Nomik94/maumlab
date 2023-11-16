@@ -24,13 +24,13 @@ enum Gender {
 type Mutation {
   createServey(input: CreateServeyInput!): Servey!
   createUser(input: CreateUserInput!): User!
-  deleteServey(id: Float!): String!
-  updateServey(id: Float!, input: UpdateServeyInput!): String!
+  deleteServey(id: Int!): String!
+  updateServey(id: Int!, input: UpdateServeyInput!): String!
 }
 
 type Query {
   getAllServey: [Servey!]!
-  getByIdServey(id: Float!): Servey!
+  getByIdServey(id: Int!): Servey!
   getUser: [User!]!
 }
 
