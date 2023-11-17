@@ -9,6 +9,7 @@ import { CreateServeyInput } from '@/modules/servey/dto/create-servey.input';
 import { Servey } from '@/modules/servey/entity/servey.entity';
 import { UpdateResult } from 'typeorm';
 import { UpdateServeyInput } from '@/modules/servey/dto/update-servey.input';
+import { createDate } from '@/common/date';
 
 @Injectable()
 export class ServeyService {
@@ -55,8 +56,7 @@ export class ServeyService {
 
   async removeServey(id: number): Promise<UpdateResult> {
     try {
-      const date: number = Date.now();
-      const deletedAt: Date = new Date(date);
+      const deletedAt: Date = createDate();
       return await this.serveyRepository.update(id, { deletedAt });
     } catch (e) {
       throw new InternalServerErrorException(e.message);
