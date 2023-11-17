@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateQuestionInput {
+  text: String!
+}
+
 input CreateServeyInput {
   name: String!
 }
@@ -22,6 +26,7 @@ enum Gender {
 }
 
 type Mutation {
+  createQuestion(input: CreateQuestionInput!, serveyId: Float!): Question!
   createServey(input: CreateServeyInput!): Servey!
   createUser(input: CreateUserInput!): User!
   deleteServey(id: Int!): String!
@@ -34,12 +39,28 @@ type Query {
   getUser: [User!]!
 }
 
+type Question {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  serveyQuestion: [ServeyQuestion!]!
+  text: String!
+  updatedAt: DateTime!
+}
+
 type Servey {
   createdAt: DateTime!
   deletedAt: DateTime
   id: Int!
   name: String!
+  serveyQuestion: [ServeyQuestion!]!
   updatedAt: DateTime!
+}
+
+type ServeyQuestion {
+  id: Int!
+  question: Question!
+  servey: Servey!
 }
 
 input UpdateServeyInput {
