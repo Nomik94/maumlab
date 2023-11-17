@@ -5,10 +5,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ServeyRepositoryInterface } from '@/modules/servey/interface/servey.repository.interface';
-import { CreateServeyInput } from '@/modules/servey/dto/create-servey.input';
+import { CreateServeyInput } from '@/modules/servey/input/create-servey.input';
 import { Servey } from '@/modules/servey/entity/servey.entity';
 import { DataSource, UpdateResult } from 'typeorm';
-import { UpdateServeyInput } from '@/modules/servey/dto/update-servey.input';
+import { UpdateServeyInput } from '@/modules/servey/input/update-servey.input';
 import { createDate } from '@/common/date';
 import { QuestionService } from '@/modules/question/question.service';
 import { ServeyQuestionService } from '@/modules/join-table/servey-question/servey-question.service';
@@ -51,7 +51,7 @@ export class ServeyService {
   async findOneByIdServey(id: number): Promise<Servey> {
     const servey: Servey = await this.serveyRepository.findOneById(id);
     if (!servey) {
-      throw new NotFoundException('Not Found Servey');
+      throw new NotFoundException(`Servey with id:${id} not found`);
     }
     return servey;
   }
@@ -60,7 +60,7 @@ export class ServeyService {
     const servey: Servey =
       await this.serveyRepository.findOneMappingQuestion(id);
     if (!servey) {
-      throw new NotFoundException('Not Found Servey');
+      throw new NotFoundException(`Servey with id:${id} not found`);
     }
     return servey;
   }

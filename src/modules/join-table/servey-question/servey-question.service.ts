@@ -4,7 +4,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { ServeyQuestionRepositoryInterface } from '@/modules/join-table/servey-question/interface/servey-question.repository.interface';
-import { CreateServeyQuestionInput } from '@/modules/join-table/servey-question/dto/create-servey-question.input';
+import { CreateServeyQuestionInput } from '@/modules/join-table/servey-question/input/create-servey-question.input';
 import { ServeyQuestion } from '@/modules/join-table/servey-question/entity/serveyQuestion.entity';
 
 @Injectable()

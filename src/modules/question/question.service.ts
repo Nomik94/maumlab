@@ -5,9 +5,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { QuestionRepositoryInterface } from '@/modules/question/interface/question.repository.interface';
-import { CreateQuestionInput } from '@/modules/question/dto/create-question.input';
+import { CreateQuestionInput } from '@/modules/question/input/create-question.input';
 import { Question } from '@/modules/question/entity/question.entity';
-import { UpdateQuestionInput } from '@/modules/question/dto/update-question.input';
+import { UpdateQuestionInput } from '@/modules/question/input/update-question.input';
 import { createDate } from '@/common/date';
 import { UpdateResult } from 'typeorm';
 
@@ -37,7 +37,7 @@ export class QuestionService {
   async findOneByIdQuestion(id: number): Promise<Question> {
     const question: Question = await this.questionRepository.findOneById(id);
     if (!question) {
-      throw new NotFoundException('Not Found Question');
+      throw new NotFoundException(`Question with id:${id} not found`);
     }
     return question;
   }

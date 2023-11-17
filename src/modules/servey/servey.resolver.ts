@@ -1,8 +1,8 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ServeyService } from '@/modules/servey/servey.service';
 import { Servey } from '@/modules/servey/entity/servey.entity';
-import { CreateServeyInput } from '@/modules/servey/dto/create-servey.input';
-import { UpdateServeyInput } from '@/modules/servey/dto/update-servey.input';
+import { CreateServeyInput } from '@/modules/servey/input/create-servey.input';
+import { UpdateServeyInput } from '@/modules/servey/input/update-servey.input';
 import { Question } from '@/modules/question/entity/question.entity';
 import { QuestionService } from '@/modules/question/question.service';
 import { ServeyQuestionService } from '@/modules/join-table/servey-question/servey-question.service';
