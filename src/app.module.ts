@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeyModule } from '@/modules/servey/servey.module';
 import { QuestionModule } from '@/modules/question/question.module';
 import { ChoiceModule } from '@/modules/choice/choice.module';
+import { ServeyQuestionModule } from './modules/join-table/servey-question/servey-question.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ChoiceModule } from '@/modules/choice/choice.module';
     ServeyModule,
     QuestionModule,
     ChoiceModule,
+    ServeyQuestionModule,
   ],
   controllers: [],
   providers: [],

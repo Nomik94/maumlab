@@ -12,15 +12,15 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { ServeyQuestion } from '@/modules/join-table/servey-question/entity/serveyQuestion.entity';
 
 @Entity()
-@ObjectType('Servey')
-export class Servey {
+@ObjectType('Question')
+export class Question {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
   id: number;
 
   @Column()
   @Field()
-  name: string;
+  text: string;
 
   @CreateDateColumn()
   @Field()
@@ -34,7 +34,7 @@ export class Servey {
   @Field({ nullable: true })
   deletedAt?: Date;
 
-  @OneToMany(() => ServeyQuestion, (serveyQuestion) => serveyQuestion.servey)
+  @OneToMany(() => ServeyQuestion, (serveyQuestion) => serveyQuestion.question)
   @Field(() => [ServeyQuestion])
   @JoinTable()
   serveyQuestion: ServeyQuestion[];
