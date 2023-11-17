@@ -26,16 +26,23 @@ enum Gender {
 }
 
 type Mutation {
-  createQuestion(input: CreateQuestionInput!, serveyId: Float!): Question!
+  createQuestion(input: CreateQuestionInput!): Question!
   createServey(input: CreateServeyInput!): Servey!
   createUser(input: CreateUserInput!): User!
+  deleteQuestion(id: Int!): String!
   deleteServey(id: Int!): String!
+  mappingServeyQuestion(questionId: Int!, serveyId: Int!): String!
+  updateQuestion(id: Int!, input: UpdateQuestionInput!): String!
   updateServey(id: Int!, input: UpdateServeyInput!): String!
 }
 
 type Query {
+  getAllMappingQuestionOfServey: [Servey!]!
+  getAllQuestion: [Question!]!
   getAllServey: [Servey!]!
+  getByIdQuestion(id: Int!): Question!
   getByIdServey(id: Int!): Servey!
+  getMappingQuestionOfServey(id: Int!): Servey!
   getUser: [User!]!
 }
 
@@ -61,6 +68,10 @@ type ServeyQuestion {
   id: Int!
   question: Question!
   servey: Servey!
+}
+
+input UpdateQuestionInput {
+  text: String
 }
 
 input UpdateServeyInput {

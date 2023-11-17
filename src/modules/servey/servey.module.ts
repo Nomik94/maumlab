@@ -5,9 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Servey } from '@/modules/servey/entity/servey.entity';
 import { ServeyRepository } from '@/modules/servey/servey.repository';
 import { ServeyQuestionModule } from '@/modules/join-table/servey-question/servey-question.module';
+import { QuestionModule } from '@/modules/question/question.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Servey]), ServeyQuestionModule],
+  imports: [
+    TypeOrmModule.forFeature([Servey]),
+    ServeyQuestionModule,
+    QuestionModule,
+  ],
   providers: [
     ServeyResolver,
     ServeyService,

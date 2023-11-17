@@ -14,4 +14,21 @@ export class ServeyRepository
   ) {
     super(serveyRepository);
   }
+
+  async findMappingQuestion(): Promise<Servey[]> {
+    return this.serveyRepository
+      .createQueryBuilder('servey')
+      .leftJoinAndSelect('servey.serveyQuestion', 'serveyQuestion')
+      .leftJoinAndSelect('serveyQuestion.question', 'question')
+      .getMany();
+  }
+
+  async findOneMappingQuestion(id: number): Promise<Servey> {
+    return this.serveyRepository
+      .createQueryBuilder('servey')
+      .leftJoinAndSelect('servey.serveyQuestion', 'serveyQuestion')
+      .leftJoinAndSelect('serveyQuestion.question', 'question')
+      .where('servey.id = :id', { id })
+      .getOne();
+  }
 }

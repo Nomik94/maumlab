@@ -2,4 +2,7 @@ import { BaseInterfaceRepository } from '@/common/repository/base.interface.repo
 import { Servey } from '@/modules/servey/entity/servey.entity';
 
 export interface ServeyRepositoryInterface
-  extends BaseInterfaceRepository<Servey> {}
+  extends BaseInterfaceRepository<Servey> {
+  findMappingQuestion(): Promise<Servey[]>;
+  findOneMappingQuestion(id: number): Promise<Servey>;
+}

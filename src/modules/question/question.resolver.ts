@@ -2,27 +2,16 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Question } from '@/modules/question/entity/question.entity';
 import { CreateQuestionInput } from '@/modules/question/dto/create-question.input';
 import { QuestionService } from '@/modules/question/question.service';
-import { ServeyService } from '@/modules/servey/servey.service';
-import { Servey } from '@/modules/servey/entity/servey.entity';
-import { ServeyQuestionService } from '@/modules/join-table/servey-question/servey-question.service';
 import { UpdateQuestionInput } from '@/modules/question/dto/update-question.input';
 
 @Resolver()
 export class QuestionResolver {
-  constructor(
-    private readonly questionService: QuestionService,
-    private readonly serveyService: ServeyService,
-    private readonly serveyQuestionService: ServeyQuestionService,
-  ) {}
+  constructor(private readonly questionService: QuestionService) {}
   @Mutation(() => Question)
   async createQuestion(
-    @Args({ name: 'serveyId', type: () => Int }) serveyId: number,
     @Args('input') input: CreateQuestionInput,
   ): Promise<Question> {
-    const servey: Servey = await this.serveyService.findOneByIdServey(serveyId);
-    const question: Question = await this.questionService.createQuestion(input);
-    await this.serveyQuestionService.createServeyQuestion({ servey, question });
-    return question;
+    return await this.questionService.createQuestion(input);
   }
 
   @Query(() => [Question])

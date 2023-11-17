@@ -7,15 +7,20 @@ import {
 import { ServeyRepositoryInterface } from '@/modules/servey/interface/servey.repository.interface';
 import { CreateServeyInput } from '@/modules/servey/dto/create-servey.input';
 import { Servey } from '@/modules/servey/entity/servey.entity';
-import { UpdateResult } from 'typeorm';
+import { DataSource, UpdateResult } from 'typeorm';
 import { UpdateServeyInput } from '@/modules/servey/dto/update-servey.input';
 import { createDate } from '@/common/date';
+import { QuestionService } from '@/modules/question/question.service';
+import { ServeyQuestionService } from '@/modules/join-table/servey-question/servey-question.service';
 
 @Injectable()
 export class ServeyService {
   constructor(
     @Inject('ServeyRepositoryInterface')
     private readonly serveyRepository: ServeyRepositoryInterface,
+    private readonly questionService: QuestionService,
+    private readonly serveyQuestionService: ServeyQuestionService,
+    private readonly dataSource: DataSource,
   ) {}
 
   async createServey(input: CreateServeyInput): Promise<Servey> {
@@ -35,8 +40,25 @@ export class ServeyService {
     }
   }
 
+  async findAllMappingQuestionOfServey(): Promise<Servey[]> {
+    try {
+      return this.serveyRepository.findMappingQuestion();
+    } catch (e) {
+      throw new InternalServerErrorException(e.message);
+    }
+  }
+
   async findOneByIdServey(id: number): Promise<Servey> {
     const servey: Servey = await this.serveyRepository.findOneById(id);
+    if (!servey) {
+      throw new NotFoundException('Not Found Servey');
+    }
+    return servey;
+  }
+
+  async findOneMappingQuestionOfServey(id: number): Promise<Servey> {
+    const servey: Servey =
+      await this.serveyRepository.findOneMappingQuestion(id);
     if (!servey) {
       throw new NotFoundException('Not Found Servey');
     }
