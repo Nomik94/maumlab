@@ -32,7 +32,7 @@ export class ServeyResolver {
   ): Promise<string> {
     await this.serveyService.updateServey(id, input);
 
-    return `success Update id:${id}`;
+    return `Success Update Servey id:${id}`;
   }
 
   @Mutation(() => String)
@@ -41,6 +41,6 @@ export class ServeyResolver {
   ): Promise<string> {
     await this.serveyService.removeServey(id);
 
-    return `success Delete id:${id}`;
+    return `Success Delete Servey id:${id}`;
   }
 }
