@@ -37,7 +37,7 @@ export class ServeyService {
   async findOneByIdServey(id: number): Promise<Servey> {
     const servey: Servey = await this.serveyRepository.findOneById(id);
     if (!servey) {
-      throw new NotFoundException();
+      throw new NotFoundException('Not Found Servey');
     }
     return servey;
   }
