@@ -5,10 +5,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ServeyRepositoryInterface } from '@/modules/servey/interface/servey.repository.interface';
-import { CreateServeyInput } from '@/modules/servey/dto/create-servey.input.dto';
+import { CreateServeyInput } from '@/modules/servey/dto/create-servey.input';
 import { Servey } from '@/modules/servey/entity/servey.entity';
 import { UpdateResult } from 'typeorm';
-import { UpdateServeyInput } from '@/modules/servey/dto/update-servey.input.dto';
+import { UpdateServeyInput } from '@/modules/servey/dto/update-servey.input';
 
 @Injectable()
 export class ServeyService {
