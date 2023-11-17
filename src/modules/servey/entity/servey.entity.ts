@@ -22,6 +22,10 @@ export class Servey {
   @Field()
   name: string;
 
+  @Column({ default: 0 })
+  @Field(() => Int)
+  completedCount: number;
+
   @CreateDateColumn()
   @Field()
   createdAt: Date;
