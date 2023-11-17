@@ -36,7 +36,7 @@ type Query {
 
 type Servey {
   createdAt: DateTime!
-  deletedAt: DateTime!
+  deletedAt: DateTime
   id: Int!
   name: String!
   updatedAt: DateTime!

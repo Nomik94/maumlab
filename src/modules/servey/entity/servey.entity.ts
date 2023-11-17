@@ -28,6 +28,6 @@ export class Servey {
   updatedAt: Date;
 
   @DeleteDateColumn({ nullable: true })
-  @Field()
-  deletedAt: Date;
+  @Field({ nullable: true })
+  deletedAt?: Date;
 }
