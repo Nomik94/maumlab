@@ -6,8 +6,9 @@ type Choice {
   createdAt: DateTime!
   deletedAt: DateTime
   id: Int!
-  question: Int!
+  question: Question!
   score: Int!
+  serveyResponse: [Response!]!
   text: String!
   updatedAt: DateTime!
 }
@@ -61,7 +62,18 @@ type Question {
   deletedAt: DateTime
   id: Int!
   serveyQuestion: [ServeyQuestion!]!
+  serveyResponse: [Response!]!
   text: String!
+  updatedAt: DateTime!
+}
+
+type Response {
+  choice: [Choice!]!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  question: Question!
+  servey: Servey!
   updatedAt: DateTime!
 }
 
@@ -72,6 +84,7 @@ type Servey {
   id: Int!
   name: String!
   serveyQuestion: [ServeyQuestion!]!
+  serveyResponse: [Response!]!
   updatedAt: DateTime!
 }
 

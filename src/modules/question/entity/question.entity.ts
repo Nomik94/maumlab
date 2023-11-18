@@ -11,6 +11,7 @@ import {
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { ServeyQuestion } from '@/modules/join-table/servey-question/entity/serveyQuestion.entity';
 import { Choice } from '@/modules/choice/entity/choice.entity';
+import { ServeyResponse } from '@/modules/servey-response/entity/servey-response.entity';
 
 @Entity()
 @ObjectType('Question')
@@ -43,4 +44,8 @@ export class Question {
   @OneToMany(() => Choice, (choice) => choice.question)
   @Field(() => [Choice])
   readonly choice: Choice[];
+
+  @OneToMany(() => ServeyResponse, (serveyResponse) => serveyResponse.question)
+  @Field(() => [ServeyResponse])
+  readonly serveyResponse: ServeyResponse[];
 }

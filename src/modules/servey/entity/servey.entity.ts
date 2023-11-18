@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { ServeyQuestion } from '@/modules/join-table/servey-question/entity/serveyQuestion.entity';
+import { ServeyResponse } from '@/modules/servey-response/entity/servey-response.entity';
 
 @Entity()
 @ObjectType('Servey')
@@ -42,4 +43,8 @@ export class Servey {
   @Field(() => [ServeyQuestion])
   @JoinTable()
   readonly serveyQuestion: ServeyQuestion[];
+
+  @OneToMany(() => ServeyResponse, (serveyResponse) => serveyResponse.servey)
+  @Field(() => [ServeyResponse])
+  readonly serveyResponse: ServeyResponse[];
 }

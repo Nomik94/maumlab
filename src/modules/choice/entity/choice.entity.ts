@@ -4,11 +4,13 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Question } from '@/modules/question/entity/question.entity';
+import { ServeyResponse } from '@/modules/servey-response/entity/servey-response.entity';
 
 @Entity()
 @ObjectType('Choice')
@@ -38,6 +40,10 @@ export class Choice {
   readonly deletedAt?: Date;
 
   @ManyToOne(() => Question, (question) => question.choice)
-  @Field(() => Int)
+  @Field(() => Question)
   readonly question: Question;
+
+  @OneToMany(() => ServeyResponse, (serveyResponse) => serveyResponse.choice)
+  @Field(() => [ServeyResponse])
+  readonly serveyResponse: ServeyResponse[];
 }
