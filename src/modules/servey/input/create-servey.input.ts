@@ -5,5 +5,5 @@ import { IsString } from 'class-validator';
 export class CreateServeyInput {
   @IsString()
   @Field()
-  name: string;
+  title: string;
 }

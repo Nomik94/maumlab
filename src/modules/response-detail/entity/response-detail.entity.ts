@@ -11,17 +11,17 @@ import {
 } from 'typeorm';
 
 @Entity()
-@ObjectType('Response')
-export class ServeyResponse {
+@ObjectType('ResponseDetail')
+export class ResponseDetail {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
   readonly id: number;
 
-  @ManyToOne(() => Choice, (choice) => choice.serveyResponse)
+  @ManyToOne(() => Choice, (choice) => choice.responseDetail)
   @Field(() => [Choice])
   readonly choice: Choice[];
 
-  @ManyToOne(() => Question, (question) => question.serveyResponse)
+  @ManyToOne(() => Question, (question) => question.responseDetail)
   @Field(() => Question)
   readonly question: Question;
 

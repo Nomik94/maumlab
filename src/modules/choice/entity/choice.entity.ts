@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Question } from '@/modules/question/entity/question.entity';
-import { ServeyResponse } from '@/modules/servey-response/entity/servey-response.entity';
+import { ResponseDetail } from '@/modules/response-detail/entity/response-detail.entity';
 
 @Entity()
 @ObjectType('Choice')
@@ -43,7 +43,7 @@ export class Choice {
   @Field(() => Question)
   readonly question: Question;
 
-  @OneToMany(() => ServeyResponse, (serveyResponse) => serveyResponse.choice)
-  @Field(() => [ServeyResponse])
-  readonly serveyResponse: ServeyResponse[];
+  @OneToMany(() => ResponseDetail, (responseDetail) => responseDetail.choice)
+  @Field(() => [ResponseDetail])
+  readonly responseDetail: ResponseDetail[];
 }

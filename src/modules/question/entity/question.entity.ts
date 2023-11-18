@@ -1,5 +1,5 @@
 import { Choice } from '@/modules/choice/entity/choice.entity';
-import { ServeyResponse } from '@/modules/servey-response/entity/servey-response.entity';
+import { ResponseDetail } from '@/modules/response-detail/entity/response-detail.entity';
 import { Servey } from '@/modules/servey/entity/servey.entity';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
@@ -44,7 +44,7 @@ export class Question {
   @Field(() => [Choice])
   readonly choice: Choice[];
 
-  @OneToMany(() => ServeyResponse, (serveyResponse) => serveyResponse.question)
-  @Field(() => [ServeyResponse])
-  readonly serveyResponse: ServeyResponse[];
+  @OneToMany(() => ResponseDetail, (responseDetail) => responseDetail.question)
+  @Field(() => [ResponseDetail])
+  readonly responseDetail: ResponseDetail[];
 }

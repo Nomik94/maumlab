@@ -2,11 +2,7 @@ import { Field, InputType, Int } from '@nestjs/graphql';
 import { IsNumber } from 'class-validator';
 
 @InputType()
-export class CreateServeyResponseInput {
-  @IsNumber()
-  @Field(() => Int)
-  serveyId: number;
-
+export class CreateResponseDetailInput {
   @IsNumber()
   @Field(() => Int)
   questionId: number;
@@ -14,4 +10,8 @@ export class CreateServeyResponseInput {
   @IsNumber()
   @Field(() => Int)
   choiceId: number;
+
+  @IsNumber()
+  @Field(() => Int)
+  completedId: number;
 }

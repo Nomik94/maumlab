@@ -19,11 +19,7 @@ export class Servey {
 
   @Column()
   @Field()
-  readonly name: string;
-
-  @Column({ default: 0 })
-  @Field(() => Int)
-  readonly completedCount: number;
+  readonly title: string;
 
   @CreateDateColumn()
   @Field()

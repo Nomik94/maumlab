@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeyModule } from '@/modules/servey/servey.module';
 import { QuestionModule } from '@/modules/question/question.module';
 import { ChoiceModule } from '@/modules/choice/choice.module';
-import { ServeyResponseModule } from '@/modules/servey-response/servey-response.module';
+import { ResponseDetailModule } from '@/modules/response-detail/response-detail.module';
 
 @Module({
   imports: [
@@ -22,7 +22,7 @@ import { ServeyResponseModule } from '@/modules/servey-response/servey-response.
     ServeyModule,
     QuestionModule,
     ChoiceModule,
-    ServeyResponseModule,
+    ResponseDetailModule,
   ],
   controllers: [],
   providers: [],
