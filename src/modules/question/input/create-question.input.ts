@@ -9,5 +9,5 @@ export class CreateQuestionInput {
 
   @IsNumber()
   @Field(() => Int)
-  serveyId: number;
+  surveyId: number;
 }

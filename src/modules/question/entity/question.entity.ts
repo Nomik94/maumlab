@@ -1,6 +1,6 @@
 import { Choice } from '@/modules/choice/entity/choice.entity';
 import { ResponseDetail } from '@/modules/response-detail/entity/response-detail.entity';
-import { Servey } from '@/modules/servey/entity/servey.entity';
+import { Survey } from '@/modules/survey/entity/survey.entity';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
   Column,
@@ -36,9 +36,9 @@ export class Question {
   @Field({ nullable: true })
   readonly deletedAt?: Date;
 
-  @ManyToOne(() => Servey, (servey) => servey.question)
-  @Field(() => Servey)
-  readonly servey: Servey;
+  @ManyToOne(() => Survey, (survey) => survey.question)
+  @Field(() => Survey)
+  readonly survey: Survey;
 
   @OneToMany(() => Choice, (choice) => choice.question)
   @Field(() => [Choice])

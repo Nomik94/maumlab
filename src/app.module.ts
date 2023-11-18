@@ -5,7 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { typeOrmConfig } from '@/config/typeorm.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ServeyModule } from '@/modules/servey/servey.module';
+import { SurveyModule } from '@/modules/survey/survey.module';
 import { QuestionModule } from '@/modules/question/question.module';
 import { ChoiceModule } from '@/modules/choice/choice.module';
 import { ResponseDetailModule } from '@/modules/response-detail/response-detail.module';
@@ -19,7 +19,7 @@ import { ResponseDetailModule } from '@/modules/response-detail/response-detail.
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
     }),
-    ServeyModule,
+    SurveyModule,
     QuestionModule,
     ChoiceModule,
     ResponseDetailModule,

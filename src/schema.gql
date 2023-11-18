@@ -20,11 +20,11 @@ input CreateChoiceInput {
 }
 
 input CreateQuestionInput {
-  serveyId: Int!
+  surveyId: Int!
   text: String!
 }
 
-input CreateServeyInput {
+input CreateSurveyInput {
   title: String!
 }
 
@@ -36,24 +36,24 @@ scalar DateTime
 type Mutation {
   createChoice(input: CreateChoiceInput!): Choice!
   createQuestion(input: CreateQuestionInput!): Question!
-  createServey(input: CreateServeyInput!): Servey!
+  createSurvey(input: CreateSurveyInput!): Survey!
   deleteChoice(id: Int!): String!
   deleteQuestion(id: Int!): String!
-  deleteServey(id: Int!): String!
+  deleteSurvey(id: Int!): String!
   updateChoice(id: Int!, input: UpdateChoiceInput!): String!
   updateQuestion(id: Int!, input: UpdateQuestionInput!): String!
-  updateServey(id: Int!, input: UpdateServeyInput!): String!
+  updateSurvey(id: Int!, input: UpdateSurveyInput!): String!
 }
 
 type Query {
   getAllChoice: [Choice!]!
   getAllQuestion: [Question!]!
-  getAllRelationQuestionOfServey: [Servey!]!
-  getAllServey: [Servey!]!
+  getAllRelationQuestionOfSurvey: [Survey!]!
+  getAllSurvey: [Survey!]!
   getByIdChoice(id: Int!): Choice!
   getByIdQuestion(id: Int!): Question!
-  getByIdServey(id: Int!): Servey!
-  getRelationQuestionOfServey(id: Int!): Servey!
+  getByIdSurvey(id: Int!): Survey!
+  getRelationQuestionOfSurvey(id: Int!): Survey!
 }
 
 type Question {
@@ -62,7 +62,7 @@ type Question {
   deletedAt: DateTime
   id: Int!
   responseDetail: [ResponseDetail!]!
-  servey: Servey!
+  survey: Survey!
   text: String!
   updatedAt: DateTime!
 }
@@ -76,7 +76,7 @@ type ResponseDetail {
   updatedAt: DateTime!
 }
 
-type Servey {
+type Survey {
   createdAt: DateTime!
   deletedAt: DateTime
   id: Int!
@@ -94,6 +94,6 @@ input UpdateQuestionInput {
   text: String
 }
 
-input UpdateServeyInput {
+input UpdateSurveyInput {
   title: String
 }

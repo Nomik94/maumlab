@@ -11,8 +11,8 @@ import {
 } from 'typeorm';
 
 @Entity()
-@ObjectType('Servey')
-export class Servey {
+@ObjectType('Survey')
+export class Survey {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
   readonly id: number;
@@ -33,7 +33,7 @@ export class Servey {
   @Field({ nullable: true })
   readonly deletedAt?: Date;
 
-  @OneToMany(() => Question, (question) => question.servey)
+  @OneToMany(() => Question, (question) => question.survey)
   @Field(() => [Question])
   readonly question: Question[];
 }
