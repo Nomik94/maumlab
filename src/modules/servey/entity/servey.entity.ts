@@ -16,30 +16,30 @@ import { ServeyQuestion } from '@/modules/join-table/servey-question/entity/serv
 export class Servey {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
-  id: number;
+  readonly id: number;
 
   @Column()
   @Field()
-  name: string;
+  readonly name: string;
 
   @Column({ default: 0 })
   @Field(() => Int)
-  completedCount: number;
+  readonly completedCount: number;
 
   @CreateDateColumn()
   @Field()
-  createdAt: Date;
+  readonly createdAt: Date;
 
   @UpdateDateColumn()
   @Field()
-  updatedAt: Date;
+  readonly updatedAt: Date;
 
   @DeleteDateColumn({ nullable: true })
   @Field({ nullable: true })
-  deletedAt?: Date;
+  readonly deletedAt?: Date;
 
   @OneToMany(() => ServeyQuestion, (serveyQuestion) => serveyQuestion.servey)
   @Field(() => [ServeyQuestion])
   @JoinTable()
-  serveyQuestion: ServeyQuestion[];
+  readonly serveyQuestion: ServeyQuestion[];
 }

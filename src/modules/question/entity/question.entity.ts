@@ -17,30 +17,30 @@ import { Choice } from '@/modules/choice/entity/choice.entity';
 export class Question {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
-  id: number;
+  readonly id: number;
 
   @Column()
   @Field()
-  text: string;
+  readonly text: string;
 
   @CreateDateColumn()
   @Field()
-  createdAt: Date;
+  readonly createdAt: Date;
 
   @UpdateDateColumn()
   @Field()
-  updatedAt: Date;
+  readonly updatedAt: Date;
 
   @DeleteDateColumn({ nullable: true })
   @Field({ nullable: true })
-  deletedAt?: Date;
+  readonly deletedAt?: Date;
 
   @OneToMany(() => ServeyQuestion, (serveyQuestion) => serveyQuestion.question)
   @Field(() => [ServeyQuestion])
   @JoinTable()
-  serveyQuestion: ServeyQuestion[];
+  readonly serveyQuestion: ServeyQuestion[];
 
   @OneToMany(() => Choice, (choice) => choice.question)
   @Field(() => [Choice])
-  choice: Choice[];
+  readonly choice: Choice[];
 }

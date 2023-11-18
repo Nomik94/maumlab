@@ -8,13 +8,13 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 export class ServeyQuestion {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
-  id: number;
+  readonly id: number;
 
   @ManyToOne(() => Servey, (servey) => servey.id)
   @Field(() => Servey)
-  servey: Servey;
+  readonly servey: Servey;
 
   @ManyToOne(() => Question, (question) => question.id)
   @Field(() => Question)
-  question: Question;
+  readonly question: Question;
 }

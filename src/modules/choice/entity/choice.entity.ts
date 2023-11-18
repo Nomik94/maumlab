@@ -15,29 +15,29 @@ import { Question } from '@/modules/question/entity/question.entity';
 export class Choice {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
-  id: number;
+  readonly id: number;
 
   @Column()
   @Field()
-  text: string;
+  readonly text: string;
 
   @Column({ default: 0 })
   @Field(() => Int)
-  score: number;
+  readonly score: number;
 
   @CreateDateColumn()
   @Field()
-  createdAt: Date;
+  readonly createdAt: Date;
 
   @UpdateDateColumn()
   @Field()
-  updatedAt: Date;
+  readonly updatedAt: Date;
 
   @DeleteDateColumn({ nullable: true })
   @Field({ nullable: true })
-  deletedAt?: Date;
+  readonly deletedAt?: Date;
 
   @ManyToOne(() => Question, (question) => question.choice)
   @Field(() => Int)
-  question: Question;
+  readonly question: Question;
 }
