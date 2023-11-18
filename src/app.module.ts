@@ -9,6 +9,7 @@ import { SurveyModule } from '@/modules/survey/survey.module';
 import { QuestionModule } from '@/modules/question/question.module';
 import { ChoiceModule } from '@/modules/choice/choice.module';
 import { ResponseDetailModule } from '@/modules/response-detail/response-detail.module';
+import { CompletedSurveyModule } from './modules/completed-survey/completed-survey.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ResponseDetailModule } from '@/modules/response-detail/response-detail.
     QuestionModule,
     ChoiceModule,
     ResponseDetailModule,
+    CompletedSurveyModule,
   ],
   controllers: [],
   providers: [],

@@ -1,4 +1,5 @@
 import { Choice } from '@/modules/choice/entity/choice.entity';
+import { CompletedSurvey } from '@/modules/completed-survey/entity/completed-survey.entity';
 import { Question } from '@/modules/question/entity/question.entity';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
@@ -17,9 +18,16 @@ export class ResponseDetail {
   @Field(() => Int)
   readonly id: number;
 
+  @ManyToOne(
+    () => CompletedSurvey,
+    (completedSurvey) => completedSurvey.responseDetail,
+  )
+  @Field(() => CompletedSurvey)
+  readonly completedSurvey: CompletedSurvey;
+
   @ManyToOne(() => Choice, (choice) => choice.responseDetail)
-  @Field(() => [Choice])
-  readonly choice: Choice[];
+  @Field(() => Choice)
+  readonly choice: Choice;
 
   @ManyToOne(() => Question, (question) => question.responseDetail)
   @Field(() => Question)

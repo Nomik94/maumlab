@@ -13,6 +13,14 @@ type Choice {
   updatedAt: DateTime!
 }
 
+type CompletedSurvey {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  responseDetail: [ResponseDetail!]!
+  survey: Survey!
+}
+
 input CreateChoiceInput {
   questionId: Int!
   score: Int!
@@ -68,7 +76,8 @@ type Question {
 }
 
 type ResponseDetail {
-  choice: [Choice!]!
+  choice: Choice!
+  completedSurvey: CompletedSurvey!
   createdAt: DateTime!
   deletedAt: DateTime
   id: Int!
@@ -77,6 +86,7 @@ type ResponseDetail {
 }
 
 type Survey {
+  completedSurvey: [CompletedSurvey!]!
   createdAt: DateTime!
   deletedAt: DateTime
   id: Int!

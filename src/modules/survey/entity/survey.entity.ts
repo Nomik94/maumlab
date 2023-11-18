@@ -1,3 +1,4 @@
+import { CompletedSurvey } from '@/modules/completed-survey/entity/completed-survey.entity';
 import { Question } from '@/modules/question/entity/question.entity';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
@@ -36,4 +37,8 @@ export class Survey {
   @OneToMany(() => Question, (question) => question.survey)
   @Field(() => [Question])
   readonly question: Question[];
+
+  @OneToMany(() => CompletedSurvey, (completedSurvey) => completedSurvey.survey)
+  @Field(() => [CompletedSurvey])
+  readonly completedSurvey: CompletedSurvey;
 }
