@@ -12,6 +12,12 @@ type Choice {
   updatedAt: DateTime!
 }
 
+input CreateChoiceInput {
+  questionId: Int!
+  score: Int!
+  text: String!
+}
+
 input CreateQuestionInput {
   text: String!
 }
@@ -26,19 +32,24 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
+  createChoice(input: CreateChoiceInput!): Choice!
   createQuestion(input: CreateQuestionInput!): Question!
   createServey(input: CreateServeyInput!): Servey!
+  deleteChoice(id: Int!): String!
   deleteQuestion(id: Int!): String!
   deleteServey(id: Int!): String!
   mappingServeyQuestion(questionId: Int!, serveyId: Int!): String!
+  updateChoice(id: Int!, input: UpdateChoiceInput!): String!
   updateQuestion(id: Int!, input: UpdateQuestionInput!): String!
   updateServey(id: Int!, input: UpdateServeyInput!): String!
 }
 
 type Query {
+  getAllChoice: [Choice!]!
   getAllMappingQuestionOfServey: [Servey!]!
   getAllQuestion: [Question!]!
   getAllServey: [Servey!]!
+  getByIdChoice(id: Int!): Choice!
   getByIdQuestion(id: Int!): Question!
   getByIdServey(id: Int!): Servey!
   getMappingQuestionOfServey(id: Int!): Servey!
@@ -68,6 +79,11 @@ type ServeyQuestion {
   id: Int!
   question: Question!
   servey: Servey!
+}
+
+input UpdateChoiceInput {
+  score: Int
+  text: String
 }
 
 input UpdateQuestionInput {
