@@ -8,7 +8,7 @@ export const typeOrmConfig: TypeOrmModuleAsyncOptions = {
     return {
       type: 'postgres',
       host: configService.get('DB_HOST'),
-      port: 5432,
+      port: configService.get('DB_PORT'),
       username: configService.get('DB_USERNAME'),
       password: configService.get('DB_PASSWORD'),
       database: configService.get('DB_DATABASE'),
