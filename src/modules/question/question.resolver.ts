@@ -8,19 +8,17 @@ import { UpdateQuestionInput } from '@/modules/question/input/update-question.in
 export class QuestionResolver {
   constructor(private readonly questionService: QuestionService) {}
   @Mutation(() => Question)
-  async createQuestion(
-    @Args('input') input: CreateQuestionInput,
-  ): Promise<Question> {
-    return await this.questionService.createQuestion(input);
+  createQuestion(@Args('input') input: CreateQuestionInput): Promise<Question> {
+    return this.questionService.createQuestion(input);
   }
 
   @Query(() => [Question])
-  async getAllQuestion(): Promise<Question[]> {
+  getAllQuestion(): Promise<Question[]> {
     return this.questionService.findAllQuestion();
   }
 
   @Query(() => Question)
-  async getByIdQuestion(
+  getByIdQuestion(
     @Args({ name: 'id', type: () => Int }) id: number,
   ): Promise<Question> {
     return this.questionService.findOneByIdQuestion(id);

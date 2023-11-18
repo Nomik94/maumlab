@@ -16,31 +16,31 @@ export class ServeyResolver {
   ) {}
 
   @Query(() => [Servey])
-  async getAllServey(): Promise<Servey[]> {
+  getAllServey(): Promise<Servey[]> {
     return this.serveyService.findAllServey();
   }
 
   @Query(() => [Servey])
-  async getAllMappingQuestionOfServey(): Promise<Servey[]> {
+  getAllMappingQuestionOfServey(): Promise<Servey[]> {
     return this.serveyService.findAllMappingQuestionOfServey();
   }
 
   @Query(() => Servey)
-  async getByIdServey(
+  getByIdServey(
     @Args({ name: 'id', type: () => Int }) id: number,
   ): Promise<Servey> {
     return this.serveyService.findOneByIdServey(id);
   }
 
   @Query(() => Servey)
-  async getMappingQuestionOfServey(
+  getMappingQuestionOfServey(
     @Args({ name: 'id', type: () => Int }) id: number,
-  ) {
+  ): Promise<Servey> {
     return this.serveyService.findOneMappingQuestionOfServey(id);
   }
 
   @Mutation(() => Servey)
-  async createServey(@Args('input') input: CreateServeyInput): Promise<Servey> {
+  createServey(@Args('input') input: CreateServeyInput): Promise<Servey> {
     return this.serveyService.createServey(input);
   }
 
