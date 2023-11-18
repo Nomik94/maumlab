@@ -40,6 +40,6 @@ export class QuestionResolver {
   ): Promise<string> {
     await this.questionService.removeQuestion(id);
 
-    return `Success Update Question id:${id}`;
+    return `Success Delete Question id:${id}`;
   }
 }
