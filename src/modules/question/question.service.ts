@@ -18,8 +18,12 @@ export class QuestionService {
     private readonly questionRepository: QuestionRepositoryInterface,
   ) {}
   async createQuestion(input: CreateQuestionInput): Promise<Question> {
+    const { serveyId, ...question } = input;
     try {
-      const questionEntity: Question = this.questionRepository.create(input);
+      const questionEntity: Question = this.questionRepository.create({
+        ...question,
+        servey: { id: serveyId },
+      });
       return await this.questionRepository.save(questionEntity);
     } catch (e) {
       throw new InternalServerErrorException(e.message);

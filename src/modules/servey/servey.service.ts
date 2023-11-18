@@ -35,9 +35,9 @@ export class ServeyService {
     }
   }
 
-  async findAllMappingQuestionOfServey(): Promise<Servey[]> {
+  async findAllRelationQuestion(): Promise<Servey[]> {
     try {
-      return this.serveyRepository.findMappingQuestion();
+      return this.serveyRepository.findRelationQuestion();
     } catch (e) {
       throw new InternalServerErrorException(e.message);
     }
@@ -51,9 +51,9 @@ export class ServeyService {
     return servey;
   }
 
-  async findOneMappingQuestionOfServey(id: number): Promise<Servey> {
+  async findOneRelationQuestion(id: number): Promise<Servey> {
     const servey: Servey =
-      await this.serveyRepository.findOneMappingQuestion(id);
+      await this.serveyRepository.findOneRelationQuestion(id);
     if (!servey) {
       throw new NotFoundException(`Servey with id:${id} not found`);
     }

@@ -1,18 +1,13 @@
-import { Module } from '@nestjs/common';
-import { ServeyResolver } from '@/modules/servey/servey.resolver';
-import { ServeyService } from '@/modules/servey/servey.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { QuestionModule } from '@/modules/question/question.module';
 import { Servey } from '@/modules/servey/entity/servey.entity';
 import { ServeyRepository } from '@/modules/servey/servey.repository';
-import { ServeyQuestionModule } from '@/modules/join-table/servey-question/servey-question.module';
-import { QuestionModule } from '@/modules/question/question.module';
+import { ServeyResolver } from '@/modules/servey/servey.resolver';
+import { ServeyService } from '@/modules/servey/servey.service';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Servey]),
-    ServeyQuestionModule,
-    QuestionModule,
-  ],
+  imports: [TypeOrmModule.forFeature([Servey]), QuestionModule],
   providers: [
     ServeyResolver,
     ServeyService,

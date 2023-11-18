@@ -20,6 +20,7 @@ input CreateChoiceInput {
 }
 
 input CreateQuestionInput {
+  serveyId: Int!
   text: String!
 }
 
@@ -39,7 +40,6 @@ type Mutation {
   deleteChoice(id: Int!): String!
   deleteQuestion(id: Int!): String!
   deleteServey(id: Int!): String!
-  mappingServeyQuestion(questionId: Int!, serveyId: Int!): String!
   updateChoice(id: Int!, input: UpdateChoiceInput!): String!
   updateQuestion(id: Int!, input: UpdateQuestionInput!): String!
   updateServey(id: Int!, input: UpdateServeyInput!): String!
@@ -47,13 +47,13 @@ type Mutation {
 
 type Query {
   getAllChoice: [Choice!]!
-  getAllMappingQuestionOfServey: [Servey!]!
   getAllQuestion: [Question!]!
+  getAllRelationQuestionOfServey: [Servey!]!
   getAllServey: [Servey!]!
   getByIdChoice(id: Int!): Choice!
   getByIdQuestion(id: Int!): Question!
   getByIdServey(id: Int!): Servey!
-  getMappingQuestionOfServey(id: Int!): Servey!
+  getRelationQuestionOfServey(id: Int!): Servey!
 }
 
 type Question {
@@ -61,7 +61,7 @@ type Question {
   createdAt: DateTime!
   deletedAt: DateTime
   id: Int!
-  serveyQuestion: [ServeyQuestion!]!
+  servey: Servey!
   serveyResponse: [Response!]!
   text: String!
   updatedAt: DateTime!
@@ -73,7 +73,6 @@ type Response {
   deletedAt: DateTime
   id: Int!
   question: Question!
-  servey: Servey!
   updatedAt: DateTime!
 }
 
@@ -83,15 +82,8 @@ type Servey {
   deletedAt: DateTime
   id: Int!
   name: String!
-  serveyQuestion: [ServeyQuestion!]!
-  serveyResponse: [Response!]!
+  question: [Question!]!
   updatedAt: DateTime!
-}
-
-type ServeyQuestion {
-  id: Int!
-  question: Question!
-  servey: Servey!
 }
 
 input UpdateChoiceInput {

@@ -1,17 +1,17 @@
+import { Choice } from '@/modules/choice/entity/choice.entity';
+import { ServeyResponse } from '@/modules/servey-response/entity/servey-response.entity';
+import { Servey } from '@/modules/servey/entity/servey.entity';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinTable,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { ServeyQuestion } from '@/modules/join-table/servey-question/entity/serveyQuestion.entity';
-import { Choice } from '@/modules/choice/entity/choice.entity';
-import { ServeyResponse } from '@/modules/servey-response/entity/servey-response.entity';
 
 @Entity()
 @ObjectType('Question')
@@ -36,10 +36,9 @@ export class Question {
   @Field({ nullable: true })
   readonly deletedAt?: Date;
 
-  @OneToMany(() => ServeyQuestion, (serveyQuestion) => serveyQuestion.question)
-  @Field(() => [ServeyQuestion])
-  @JoinTable()
-  readonly serveyQuestion: ServeyQuestion[];
+  @ManyToOne(() => Servey, (servey) => servey.question)
+  @Field(() => Servey)
+  readonly servey: Servey;
 
   @OneToMany(() => Choice, (choice) => choice.question)
   @Field(() => [Choice])

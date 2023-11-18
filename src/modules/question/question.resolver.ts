@@ -7,11 +7,6 @@ import { UpdateQuestionInput } from '@/modules/question/input/update-question.in
 @Resolver()
 export class QuestionResolver {
   constructor(private readonly questionService: QuestionService) {}
-  @Mutation(() => Question)
-  createQuestion(@Args('input') input: CreateQuestionInput): Promise<Question> {
-    return this.questionService.createQuestion(input);
-  }
-
   @Query(() => [Question])
   getAllQuestion(): Promise<Question[]> {
     return this.questionService.findAllQuestion();
@@ -22,6 +17,11 @@ export class QuestionResolver {
     @Args({ name: 'id', type: () => Int }) id: number,
   ): Promise<Question> {
     return this.questionService.findOneByIdQuestion(id);
+  }
+
+  @Mutation(() => Question)
+  createQuestion(@Args('input') input: CreateQuestionInput): Promise<Question> {
+    return this.questionService.createQuestion(input);
   }
 
   @Mutation(() => String)
