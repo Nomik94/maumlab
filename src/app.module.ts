@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { UserModule } from '@/modules/user/user.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
@@ -20,7 +19,6 @@ import { ServeyQuestionModule } from './modules/join-table/servey-question/serve
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
     }),
-    UserModule,
     ServeyModule,
     QuestionModule,
     ChoiceModule,

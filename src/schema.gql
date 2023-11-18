@@ -2,6 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Choice {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  question: Int!
+  score: Int!
+  text: String!
+  updatedAt: DateTime!
+}
+
 input CreateQuestionInput {
   text: String!
 }
@@ -10,25 +20,14 @@ input CreateServeyInput {
   name: String!
 }
 
-input CreateUserInput {
-  age: Int!
-  gender: Gender!
-}
-
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
-enum Gender {
-  MAN
-  WOMAN
-}
-
 type Mutation {
   createQuestion(input: CreateQuestionInput!): Question!
   createServey(input: CreateServeyInput!): Servey!
-  createUser(input: CreateUserInput!): User!
   deleteQuestion(id: Int!): String!
   deleteServey(id: Int!): String!
   mappingServeyQuestion(questionId: Int!, serveyId: Int!): String!
@@ -43,10 +42,10 @@ type Query {
   getByIdQuestion(id: Int!): Question!
   getByIdServey(id: Int!): Servey!
   getMappingQuestionOfServey(id: Int!): Servey!
-  getUser: [User!]!
 }
 
 type Question {
+  choice: [Choice!]!
   createdAt: DateTime!
   deletedAt: DateTime
   id: Int!
@@ -77,10 +76,4 @@ input UpdateQuestionInput {
 
 input UpdateServeyInput {
   name: String
-}
-
-type User {
-  age: Int!
-  gender: Gender!
-  id: Int!
 }
