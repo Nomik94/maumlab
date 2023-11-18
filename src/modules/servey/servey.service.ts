@@ -1,26 +1,21 @@
+import { createDate } from '@/common/date';
+import { Servey } from '@/modules/servey/entity/servey.entity';
+import { CreateServeyInput } from '@/modules/servey/input/create-servey.input';
+import { UpdateServeyInput } from '@/modules/servey/input/update-servey.input';
+import { ServeyRepositoryInterface } from '@/modules/servey/interface/servey.repository.interface';
 import {
   Inject,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import { ServeyRepositoryInterface } from '@/modules/servey/interface/servey.repository.interface';
-import { CreateServeyInput } from '@/modules/servey/input/create-servey.input';
-import { Servey } from '@/modules/servey/entity/servey.entity';
-import { DataSource, UpdateResult } from 'typeorm';
-import { UpdateServeyInput } from '@/modules/servey/input/update-servey.input';
-import { createDate } from '@/common/date';
-import { QuestionService } from '@/modules/question/question.service';
-import { ServeyQuestionService } from '@/modules/join-table/servey-question/servey-question.service';
+import { UpdateResult } from 'typeorm';
 
 @Injectable()
 export class ServeyService {
   constructor(
     @Inject('ServeyRepositoryInterface')
     private readonly serveyRepository: ServeyRepositoryInterface,
-    private readonly questionService: QuestionService,
-    private readonly serveyQuestionService: ServeyQuestionService,
-    private readonly dataSource: DataSource,
   ) {}
 
   async createServey(input: CreateServeyInput): Promise<Servey> {
