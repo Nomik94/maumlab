@@ -27,9 +27,19 @@ input CreateChoiceInput {
   text: String!
 }
 
+input CreateCompletedSurveyInput {
+  response: [CreateResponseInput!]!
+  surveyId: Int!
+}
+
 input CreateQuestionInput {
   surveyId: Int!
   text: String!
+}
+
+input CreateResponseInput {
+  choiceId: Int!
+  questionId: Int!
 }
 
 input CreateSurveyInput {
@@ -43,6 +53,7 @@ scalar DateTime
 
 type Mutation {
   createChoice(input: CreateChoiceInput!): Choice!
+  createCompletedSurvey(input: CreateCompletedSurveyInput!): CompletedSurvey!
   createQuestion(input: CreateQuestionInput!): Question!
   createSurvey(input: CreateSurveyInput!): Survey!
   deleteChoice(id: Int!): String!

@@ -24,6 +24,10 @@ export abstract class BaseAbstractRepository<T extends HasId>
     return this.entity.create(data);
   }
 
+  public createLikeArray(data: DeepPartial<T[]>): T[] {
+    return this.entity.create(data);
+  }
+
   public async save(data: DeepPartial<T>): Promise<T> {
     return await this.entity.save(data);
   }

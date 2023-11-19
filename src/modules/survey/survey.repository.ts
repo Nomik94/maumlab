@@ -19,6 +19,7 @@ export class SurveyRepository
     return this.surveyRepository
       .createQueryBuilder('survey')
       .leftJoinAndSelect('survey.question', 'question')
+      .leftJoinAndSelect('question.choice', 'choice')
       .getMany();
   }
 
@@ -26,6 +27,7 @@ export class SurveyRepository
     return this.surveyRepository
       .createQueryBuilder('survey')
       .leftJoinAndSelect('survey.question', 'question')
+      .leftJoinAndSelect('question.choice', 'choice')
       .where('survey.id = :id', { id })
       .getOne();
   }
