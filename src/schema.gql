@@ -75,16 +75,19 @@ type Mutation {
 
 type Query {
   getAllChoice: [Choice!]!
+  getAllCompletedSurvey: [CompletedSurvey!]!
   getAllQuestion: [Question!]!
   getAllRelationQuestionOfSurvey: [Survey!]!
   getAllResponseDetail: [ResponseDetail!]!
   getAllSurvey: [Survey!]!
   getByIdChoice(id: Int!): Choice!
+  getByIdCompletedSurvey(id: Int!): CompletedSurvey!
   getByIdQuestion(id: Int!): Question!
   getByIdResponseDetail(id: Int!): ResponseDetail!
   getByIdSurvey(id: Int!): Survey!
   getRelationChoice(id: Int!): Question!
   getRelationQuestionOfSurvey(id: Int!): Survey!
+  getRelationResponseDetail(id: Int!): CompletedSurvey!
 }
 
 type Question {
