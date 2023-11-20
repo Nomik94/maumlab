@@ -18,7 +18,13 @@ export class QuestionResolver {
   ): Promise<Question> {
     return this.questionService.findOneByIdQuestion(id);
   }
-  //TODO: relation choice Get
+
+  @Query(() => Question)
+  getRelationChoice(
+    @Args({ name: 'id', type: () => Int }) id: number,
+  ): Promise<Question> {
+    return this.questionService.findOneRelationChoice(id);
+  }
 
   @Mutation(() => Question)
   createQuestion(@Args('input') input: CreateQuestionInput): Promise<Question> {

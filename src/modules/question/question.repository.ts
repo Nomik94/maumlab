@@ -14,4 +14,10 @@ export class QuestionRepository
   ) {
     super(questionRepository);
   }
+  async findOneRelationChoice(id: number): Promise<Question> {
+    return await this.questionRepository.findOne({
+      where: { id },
+      relations: ['choice'],
+    });
+  }
 }

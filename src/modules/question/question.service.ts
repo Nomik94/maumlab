@@ -46,6 +46,15 @@ export class QuestionService {
     return question;
   }
 
+  async findOneRelationChoice(id: number): Promise<Question> {
+    const question: Question =
+      await this.questionRepository.findOneRelationChoice(id);
+    if (!question) {
+      throw new NotFoundException(`Question with id:${id} not found`);
+    }
+    return question;
+  }
+
   async updateQuestion(
     id: number,
     data: UpdateQuestionInput,

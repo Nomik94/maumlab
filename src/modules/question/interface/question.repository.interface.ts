@@ -2,4 +2,6 @@ import { BaseInterfaceRepository } from '@/common/repository/base.interface.repo
 import { Question } from '@/modules/question/entity/question.entity';
 
 export interface QuestionRepositoryInterface
-  extends BaseInterfaceRepository<Question> {}
+  extends BaseInterfaceRepository<Question> {
+  findOneRelationChoice(id: number): Promise<Question>;
+}

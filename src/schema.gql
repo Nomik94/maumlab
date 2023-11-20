@@ -83,6 +83,7 @@ type Query {
   getByIdQuestion(id: Int!): Question!
   getByIdResponseDetail(id: Int!): ResponseDetail!
   getByIdSurvey(id: Int!): Survey!
+  getRelationChoice(id: Int!): Question!
   getRelationQuestionOfSurvey(id: Int!): Survey!
 }
 
