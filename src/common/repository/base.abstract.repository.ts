@@ -24,10 +24,6 @@ export abstract class BaseAbstractRepository<T extends HasId>
     return this.entity.create(data);
   }
 
-  public createLikeArray(data: DeepPartial<T[]>): T[] {
-    return this.entity.create(data);
-  }
-
   public async save(data: DeepPartial<T>): Promise<T> {
     return await this.entity.save(data);
   }
@@ -55,5 +51,9 @@ export abstract class BaseAbstractRepository<T extends HasId>
     data: QueryDeepPartialEntity<T>,
   ): Promise<UpdateResult> {
     return await this.entity.update(id, data);
+  }
+
+  public async softDelete(id: number) {
+    return await this.entity.softDelete(id);
   }
 }
