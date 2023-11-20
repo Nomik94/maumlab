@@ -1,5 +1,5 @@
 import { Choice } from '@/modules/choice/entity/choice.entity';
-import { ResponseDetail } from '@/modules/completed-survey/entity/response-detail.entity';
+import { ResponseDetail } from '@/modules/response-detail/entity/response-detail.entity';
 import { Survey } from '@/modules/survey/entity/survey.entity';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {

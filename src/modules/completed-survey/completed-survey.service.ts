@@ -5,8 +5,7 @@ import {
   IResponseArray,
   ResponseItem,
 } from '@/modules/completed-survey/interface/repsonse-array.interface';
-import { ResponseDetail } from '@/modules/completed-survey/entity/response-detail.entity';
-import { ResponseDetailRepositoryInterface } from '@/modules/completed-survey/interface/response-detail.repository.interface';
+import { ResponseDetailService } from '@/modules/response-detail/response-detail.service';
 import {
   Inject,
   Injectable,
@@ -20,9 +19,8 @@ export class CompletedSurveyService {
   constructor(
     @Inject('CompletedSurveyRepositoryInterface')
     private readonly completedSurveyRepository: CompletedSurveyRepositoryInterface,
-    @Inject('ResponseDetailRepositoryInterface')
-    private readonly responseDetailRepository: ResponseDetailRepositoryInterface,
     private readonly dataSource: DataSource,
+    private readonly responseDetailService: ResponseDetailService,
   ) {}
 
   async createCompletedSurvey(
@@ -46,16 +44,10 @@ export class CompletedSurveyService {
           completedSurveyId,
         }),
       );
-      for (const data of responseArray) {
-        const { questionId, completedSurveyId, choiceId } = data;
-        const responseDetailEntity: ResponseDetail =
-          this.responseDetailRepository.create({
-            question: { id: questionId },
-            choice: { id: choiceId },
-            completedSurvey: { id: completedSurveyId },
-          });
-        await queryRunner.manager.save(responseDetailEntity);
-      }
+      await this.responseDetailService.createResponseDetailByCompletedSurvey(
+        responseArray,
+        queryRunner,
+      );
       await queryRunner.commitTransaction();
       return completedSurvey;
     } catch (e) {

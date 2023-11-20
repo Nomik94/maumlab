@@ -1,6 +1,6 @@
 import { BaseAbstractRepository } from '@/common/repository/base.abstract.repository';
-import { ResponseDetail } from '@/modules/completed-survey/entity/response-detail.entity';
-import { ResponseDetailRepositoryInterface } from '@/modules/completed-survey/interface/response-detail.repository.interface';
+import { ResponseDetail } from '@/modules/response-detail/entity/response-detail.entity';
+import { ResponseDetailRepositoryInterface } from '@/modules/response-detail/interface/response-detail.repository.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
