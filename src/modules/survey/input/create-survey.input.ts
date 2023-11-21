@@ -6,4 +6,12 @@ export class CreateSurveyInput {
   @IsString()
   @Field()
   title: string;
+
+  @IsString()
+  @Field()
+  content: string;
+
+  @IsString()
+  @Field()
+  endMessage: string;
 }

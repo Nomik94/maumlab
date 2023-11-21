@@ -49,6 +49,8 @@ input CreateResponseInput {
 }
 
 input CreateSurveyInput {
+  content: String!
+  endMessage: String!
   title: String!
 }
 
@@ -113,8 +115,10 @@ type ResponseDetail {
 
 type Survey {
   completedSurvey: [CompletedSurvey!]!
+  content: String!
   createdAt: DateTime!
   deletedAt: DateTime
+  endMessage: String!
   id: Int!
   question: [Question!]!
   title: String!
@@ -135,5 +139,7 @@ input UpdateResponsedetailInput {
 }
 
 input UpdateSurveyInput {
+  content: String
+  endMessage: String
   title: String
 }

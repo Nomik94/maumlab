@@ -22,6 +22,14 @@ export class Survey {
   @Field()
   readonly title: string;
 
+  @Column()
+  @Field()
+  readonly content: string;
+
+  @Column()
+  @Field()
+  readonly endMessage: string;
+
   @CreateDateColumn()
   @Field()
   readonly createdAt: Date;
