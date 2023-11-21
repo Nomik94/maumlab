@@ -14,4 +14,15 @@ export class ResponseDetailRepository
   ) {
     super(responseDetailRepository);
   }
+  findAllRelation(): Promise<ResponseDetail[]> {
+    return this.responseDetailRepository.find({
+      relations: ['choice', 'question', 'completedSurvey'],
+    });
+  }
+  findOneByIdRelation(id: number): Promise<ResponseDetail> {
+    return this.responseDetailRepository.findOne({
+      where: { id },
+      relations: ['choice', 'question', 'completedSurvey'],
+    });
+  }
 }

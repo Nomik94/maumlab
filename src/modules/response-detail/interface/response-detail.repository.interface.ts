@@ -2,4 +2,7 @@ import { BaseInterfaceRepository } from '@/common/repository/base.interface.repo
 import { ResponseDetail } from '@/modules/response-detail/entity/response-detail.entity';
 
 export interface ResponseDetailRepositoryInterface
-  extends BaseInterfaceRepository<ResponseDetail> {}
+  extends BaseInterfaceRepository<ResponseDetail> {
+  findAllRelation(): Promise<ResponseDetail[]>;
+  findOneByIdRelation(id: number): Promise<ResponseDetail>;
+}

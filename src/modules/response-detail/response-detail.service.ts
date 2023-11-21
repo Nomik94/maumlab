@@ -2,6 +2,7 @@ import { createDate } from '@/common/date';
 import { IResponseArray } from '@/modules/completed-survey/interface/repsonse-array.interface';
 import { ResponseDetail } from '@/modules/response-detail/entity/response-detail.entity';
 import { CreateResponseInput } from '@/modules/response-detail/input/create-response.input';
+import { UpdateResponsedetailInput } from '@/modules/response-detail/input/update-response-detail.input';
 import { ResponseDetailRepositoryInterface } from '@/modules/response-detail/interface/response-detail.repository.interface';
 import {
   Inject,
@@ -47,21 +48,25 @@ export class ResponseDetailService {
 
   async findAllResponseDetail(): Promise<ResponseDetail[]> {
     try {
-      return await this.responseDetailRepository.findAll();
+      return await this.responseDetailRepository.findAllRelation();
     } catch (e) {
       throw new InternalServerErrorException(e.message);
     }
   }
 
   async findOneByIdResponseDetial(id: number): Promise<ResponseDetail> {
-    const responseDetail = await this.responseDetailRepository.findOneById(id);
+    const responseDetail =
+      await this.responseDetailRepository.findOneByIdRelation(id);
     if (!responseDetail) {
       throw new NotFoundException(`ResponseDetail with id:${id} not found`);
     }
     return responseDetail;
   }
 
-  async updateResponseDetail(id: number, data): Promise<UpdateResult> {
+  async updateResponseDetail(
+    id: number,
+    data: UpdateResponsedetailInput,
+  ): Promise<UpdateResult> {
     const { choiceId } = data;
     try {
       return await this.responseDetailRepository.update(id, {
